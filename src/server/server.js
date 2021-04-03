@@ -25,16 +25,17 @@ app.get("/", res => {
 })
 
 
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='
-const weatherAPI = process.env.API_KEY
+const baseURL = 'http://api.geonames.org/searchJSON?q='
+const geoAPI = process.env.API_KEY
+const maxRows = '&maxRows=10&username='
 
-app.post("/addWeather", async (req, res) => {
+app.post("/addGeo", async (req, res) => {
 
     try {
         console.log(req.body)
         const response =  await axios({
         method: "post",
-        url: baseURL + req.body.zip + weatherAPI
+        url: baseURL + req.body.zip + maxRows + geoAPI
         })
         res.send(response.data)
         console.log(req.body.zip);

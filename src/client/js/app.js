@@ -4,18 +4,16 @@ const { default: fetch } = require("node-fetch");
 
 function performAction(e) {
     e.preventDefault()
-    const day = new Date();
-    const today = (day.getMonth()+1)+'.'+ day.getDate()+'.'+ day.getFullYear();  
    
     const zipText = document.getElementById("zip").value;
     
     console.log("it's clicked")
-    if (Client.checkForZip(zipText)) {
-        alert("I can't find your zip code.\n Please enter your zip code again.");
-    } else {
+    // if (Client.checkForZip(zipText)) {
+    //     alert("I can't find your zip code.\n Please enter your zip code again.");
+    // } else {
         console.log(zipText);
-        postWeather("/addWeather", { zip:zipText })
-    }
+        postWeather("/addGeo", { zip:zipText })
+    // }
 };
 
 
@@ -48,18 +46,15 @@ async function updateUI(res) {
    
        
         console.log(res);
-        const imageUrl = "http://openweathermap.org/img/wn/" + res.weather[0].icon + "@2x.png" 
         const day = new Date();
         const today = (day.getMonth()+1)+'.'+ day.getDate()+'.'+ day.getFullYear();  
         const feelings = document.getElementById("feelings").value;
         // get the selectors by Id, and update property dynamically
-        console.log(imageUrl);
         document.getElementById("date").innerHTML = today;
-        document.getElementById("temp").innerHTML = res.main.temp + "F";
-        document.getElementById("weather").innerHTML = res.weather[0].main;
+        document.getElementById("temp").innerHTML = res.geonames[0].lat; //latitude
+        document.getElementById("weather").innerHTML = res.geonames[0].lng; //longitude
         document.getElementById("weather").classList.add("#weather");
         document.getElementById("show-feeling").innerHTML = feelings;
-        document.getElementById("weather-img").src = imageUrl; 
 }
 
 
