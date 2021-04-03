@@ -1,5 +1,3 @@
-import { data } from "browserslist";
-
 const { default: fetch } = require("node-fetch");
 
 function performAction(e) {
@@ -42,20 +40,58 @@ const postWeather = async (url="", data = {} )=>{
 /* Update UI */
 
 async function updateUI(res) {
-   
-   
-       
         console.log(res);
-        const day = new Date();
-        const today = (day.getMonth()+1)+'.'+ day.getDate()+'.'+ day.getFullYear();  
-        const feelings = document.getElementById("feelings").value;
+        
         // get the selectors by Id, and update property dynamically
-        document.getElementById("date").innerHTML = today;
-        document.getElementById("temp").innerHTML = res.geonames[0].lat; //latitude
-        document.getElementById("weather").innerHTML = res.geonames[0].lng; //longitude
-        document.getElementById("weather").classList.add("#weather");
-        document.getElementById("show-feeling").innerHTML = feelings;
+        document.getElementById("days").innerHTML = dayCount();
+        console.log(dayCount());
+        document.getElementById("city").innerHTML = res.geonames[0].name; //city
+        document.getElementById("country").innerHTML = res.geonames[0].countryName; //country
+        document.getElementById("latitude").innerHTML = res.geonames[0].lat; //latitude
+        document.getElementById("longitude").innerHTML = res.geonames[0].lng; //longitude
+        document.getElementById("weather").classList.add("#weather");      
 }
+
+/*count down*/
+const dayCount = function() {
+    const departureDate = document.getElementById("date").value;
+    console.log("departuredate", departureDate);
+    const month = departureDate.slice(0,2);
+    console.log(month);
+    const day = departureDate.slice(3,5);
+    console.log(day);
+    const year = departureDate.slice(6,10);
+    console.log(year);
+    const theDate = new Date(year, month - 1, day);
+    console.log(theDate);
+    const today = new Date();
+    console.log("big",theDate - today);
+
+    if (theDate >= today) {
+        return (Math.round((theDate - today) / (1000 * 60 * 60 * 24 ))+1);
+    } else {
+        alert ("Please enter future date.")
+    }
+}
+
+/* Check leapyear */
+const leapYear = function(yearNow) {
+    let totalDate;
+    if (yearNow % 4 === 0) {
+        if (yearNow % 100 === 0) {
+            if (yearNow % 400 === 0) {
+                 return true;
+            } else {
+                return false;
+            }
+        } else {
+            totalDate === 366;
+        }
+    } else {
+        totalDate === 365;
+    }
+}
+
 
 
 export {performAction}

@@ -13,31 +13,35 @@
     <div class ="holder headline">Weather Journal App</div>
   
     <div class ="holder zip">
-      <label for="zip" class="zip-here">Enter Zip code here</label>
-      <input type="text" id="zip" placeholder="This won't work because API key was deleted." name="zipCode">
+      <label for="zip" class="zip-here">Enter city name</label>
+      <input type="text" id="zip" placeholder="Enter city name." name="zipCode">
     </div>
     
-    <div class ="holder feel">
-      <label for="feelings" class="feeling-today">How are you feeling today?</label>
-      <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50" name = "feel"></textarea>
+    <div class ="holder date">
+      <label for="feelings" class="feeling-today">Enter you departure date</label>
+      <input type="text" id="date" placeholder="MM/DD/YYYY" name="date">
       <button id="generate" type = "submit"> Generate </button>
     </div>
+
+    
   
     <div class ="holder entry" id="entry">
       <div class = "title">Weather forecast</div>
       <div id = "entry-holder">
-        <h3> Today is...</h3>
-        <div class="entry-text" id = "date"></div>  
-        <h3> The temperature in your city is...</h3>
-        <div class="entry-text" id = "temp"></div>
-        <h3> The weather is...</h3>
-        <div class="entry-text weather-image">
-          <p id ="weather"></p>
-          <div><img id="weather-img"/></div>
-        </div>
-        <h3> I know you feel...</h3>
-        <div class="entry-text" id = "show-feeling"></div>
-        <h3>today.</h3>
+        <p>date</p>
+        <div class="entry-text" id = "days"></div> 
+        <p>date</p>
+        <div class="entry-text" id = "city"></div>  
+        <p>date</p>
+        <div class="entry-text" id = "country"></div>
+        <p>date</p>
+        <div class="entry-text" id = "latitude"></div>
+        <p>date</p>
+        <div class="entry-text" id = "longitude"></div>
+        <p>date</p>
+        <div class="entry-text" id = "count-down"></div>
+        <p>date</p>
+        <div class="entry-text" id = "weather"></div>
     </div>
   </div>
 
