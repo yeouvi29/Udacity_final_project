@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Journal</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id = "app">
+    <div class ="holder headline">Weather Journal App</div>
+  
+    <div class ="holder zip">
+      <label for="zip" class="zip-here">Enter Zip code here</label>
+      <input type="text" id="zip" placeholder="This won't work because API key was deleted." name="zipCode">
+    </div>
+    
+    <div class ="holder feel">
+      <label for="feelings" class="feeling-today">How are you feeling today?</label>
+      <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50" name = "feel"></textarea>
+      <button id="generate" type = "submit"> Generate </button>
+    </div>
+  
+    <div class ="holder entry" id="entry">
+      <div class = "title">Weather forecast</div>
+      <div id = "entry-holder">
+        <h3> Today is...</h3>
+        <div class="entry-text" id = "date"></div>  
+        <h3> The temperature in your city is...</h3>
+        <div class="entry-text" id = "temp"></div>
+        <h3> The weather is...</h3>
+        <div class="entry-text weather-image">
+          <p id ="weather"></p>
+          <div><img id="weather-img"/></div>
+        </div>
+        <h3> I know you feel...</h3>
+        <div class="entry-text" id = "show-feeling"></div>
+        <h3>today.</h3>
+    </div>
+  </div>
+
+
+</body>
+</html>

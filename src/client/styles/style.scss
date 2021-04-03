@@ -1,0 +1,166 @@
+body{
+    background: #fffff8;
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+h3 {
+    color: seagreen;
+    font-weight: 400;
+
+}
+
+#app{
+    display: grid;
+    grid-auto-rows: 80px 150px 600px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "h h"
+                         "z c"  
+                         "f c";
+    height:100vh;
+    background: ivory;
+    color: #364f6b;
+    grid-gap: 1em;
+    font-size: 20px;
+}
+
+.entry{
+    font-family: 'Baloo Tammudu 2', cursive;
+
+}
+
+.feel {
+    background-color: #94ebcd;
+    display: flex;
+    flex-direction: column;
+    grid-area: f;
+}
+
+.headline {
+    background-color: #ffcb91;
+    font-size: 3rem;
+    grid-area: h;
+}
+
+.holder{
+    padding: 10px;
+}
+
+.entry {
+    background: #6ddccf;
+    grid-area: c;
+}
+
+.entry-text {
+    color: #810034;
+    font-size: 1.5em;
+    line-height: 1%;
+
+}
+
+.zip {
+    background-color: #ffefa1;
+    grid-area: z;
+}
+
+.zip-here {
+    margin-bottom: 10px;
+}
+
+.feeling-today {
+    margin-bottom: 10px;
+}
+
+.weather-image {
+    display: flex;
+    flex-direction: row;
+}
+#weather {
+    margin: auto 0;
+}
+
+#weather-img {
+    width: 80px;
+    height: 80px;
+}
+
+#zip {
+    color: #e9896a;
+    padding-left: 10px;
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+
+label{
+    display:block;
+    font-size: 27px;
+}
+
+input{
+    display:block;
+    height: 60px;
+    width: 320px;
+    background:#ffbe0f;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    color: #0f4c75;
+    background: #bad7df;
+    border: 5px solid #3b4a6b;
+    border-radius: 10px;
+    display: inline;
+    font-size: 26px;
+    font-family: 'Oswald', sans-serif;
+    margin: 20px auto;
+    
+}
+
+button:hover {
+    background-color: sandybrown;
+}
+
+
+h1{
+    font-size: 36px;
+}
+
+textarea{
+    background:#5eaaa8;
+    border: none;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    padding: 10px;
+}
+
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #387c6d; 
+    font-family: 'Baloo Tammudu 2', cursive;
+
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: #387c6d; 
+    font-family: 'Baloo Tammudu 2', cursive;
+
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #387c6d; 
+    font-family: 'Baloo Tammudu 2', cursive;
+
+} 
