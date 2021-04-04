@@ -27,11 +27,8 @@ app.get("/", res => {
 })
 
 
-const geoBaseURL = 'http://api.geonames.org/searchJSON?q='
-const geoAPI = process.env.API_KEY
-const maxRows = '&maxRows=10&username='
-const geomData = {};
-const weatherData = {};
+
+
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
     .then(
@@ -42,7 +39,13 @@ app.post("/addGeo", async (req, res) => {
     )
 })
 
+const weatherData = [];
+
 const getGeoInfo = async (req) => {
+    const geoBaseURL = 'http://api.geonames.org/searchJSON?q='
+    const geoAPI = process.env.GEO_KEY
+    const maxRows = '&maxRows=10&username='
+
     try {
         console.log(req.body)
         const response =  await axios({
@@ -59,7 +62,8 @@ const getGeoInfo = async (req) => {
             longitude: response.data.geonames[0].lng
         }
         console.log("geodata",geoData);
-        return geoData;
+        weatherData.push(geoData);
+        return weatherData;
 
         
     } catch (err) {
@@ -69,17 +73,18 @@ const getGeoInfo = async (req) => {
 }
 
 const getWeatherInfo = async (res) => {
+    console.log(res);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key='
     const weaAPI = process.env.WEATHER_KEY
-    const day = res.date.slice(0,2);
+    const day = res[0].date.slice(0,2);
     const nextDay = "0" + (parseInt(day) + 1).toString()
-    const month = res.date.slice(3,5);
-    const year = res.date.slice(6,10);
+    const month = res[0].date.slice(3,5);
+    const year = res[0].date.slice(6,10);
     const changeDateFormat = month + "-" + day;
     const setNextDay = month + "-" + nextDay
     console.log(changeDateFormat);
-    const lat = "&lat=" + (Math.round(res.latitude * 100) / 100);
-    const lon = "&lon=" + (Math.round(res.longitude* 100) / 100);
+    const lat = "&lat=" + (Math.round(res[0].latitude * 100) / 100);
+    const lon = "&lon=" + (Math.round(res[0].longitude* 100) / 100);
     const date = "&start_day=" + changeDateFormat + "&end_day=" + setNextDay + "&units=I"
 
     try {
@@ -92,11 +97,39 @@ const getWeatherInfo = async (res) => {
             tempHigh: response.data.data[0].max_temp,
             tempLow: response.data.data[0].min_temp
         }
-        console.log("weadata", weaData);
-        console.log(res);
+        weatherData.push(weaData)
+        weatherData.push(res)
+        console.log("weatherData", weatherData)
+        return weatherData;
 
         
     } catch (err) {
         console.log("error", err)
     }   
 }
+
+
+// const getPhoto = async (res) => {
+//     const pixaBayURL = 'https://pixabay.com/api/?key=';
+//     const weaAPI = process.env.PIXABAY_KEY;
+    
+
+//     try {
+//         const response =  await axios({
+//         method: "post",
+//         url: weaBaseURL + weaAPI + lat + lon + date
+//         })
+//         console.log("weatherbit",response);
+//         const weaData = {
+//             tempHigh: response.data.data[0].max_temp,
+//             tempLow: response.data.data[0].min_temp
+//         }
+//         weatherData.push(weaData)
+//         // weatherData.push(res)
+//         console.log("weatherData", weatherData)
+
+        
+//     } catch (err) {
+//         console.log("error", err)
+//     }   
+// }
