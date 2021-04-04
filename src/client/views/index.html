@@ -2,48 +2,55 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Weather Journal</title>
+  <title>Travel Planner</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sacramento&family=Work+Sans:ital@1&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/79f2ca8cc8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id = "app">
-    <div class ="holder headline">Weather Journal App</div>
-  
-    <div class ="holder zip">
-      <label for="city" class="zip-here">Enter city name</label>
-      <input type="text" id="city-input" placeholder="Enter city name." name="city">
-    </div>
-    
-    <div class ="holder date">
-      <label for="feelings" class="feeling-today">Enter you departure date</label>
-      <input type="text" id="date" placeholder="MM/DD/YYYY" name="date">
-      <button id="generate" type = "submit"> Generate </button>
-    </div>
+  <header>
+    <div class ="holder headline">Plan your new journey</div>
+  </header>
+  <div class="main-content">
+    <aside>
+        <div class ="input city">
+          <label for="city" class="city-here">City name</label>
+          <input type="text" id="city-input" placeholder="Where are you going?" name="city">
+        </div>
+        
+        <div class ="input date">
+          <label for="date" class="date-here">Departure date</label>
+          <input type="text" id="date" placeholder="MM/DD/YYYY" name="date">
+        </div>
+          <button id="generate" type = "submit"> <i class="fas fa-search"></i></button>
+    </aside> 
 
-    
-  
-    <div class ="holder entry" id="entry">
-      <div class = "title">Weather forecast</div>
-      <div id = "entry-holder">
-        <p>date</p>
-        <div class="entry-text" id = "days"></div> 
-        <p>date</p>
-        <div class="entry-text" id = "city"></div>  
-        <p>date</p>
-        <div class="entry-text" id = "country"></div>
-        <p>date</p>
-        <div class="entry-text" id = "latitude"></div>
-        <p>date</p>
-        <div class="entry-text" id = "longitude"></div>
-        <p>date</p>
-        <div class="entry-text" id = "count-down"></div>
-        <p>date</p>
-        <div class="entry-text" id = "weather"></div>
+    <main>   
+        <img src="./src/client/images/beach-main.jpg" alt="beach-image"/>
+        <div id = "entry-holder">
+          <p>date</p>
+          <div class="entry-text" id = "days"></div> 
+          <p>date</p>
+          <div class="entry-text" id = "city"></div>  
+          <p>date</p>
+          <div class="entry-text" id = "country"></div>
+          <p>date</p>
+          <div class="entry-text" id = "latitude"></div>
+          <p>date</p>
+          <div class="entry-text" id = "longitude"></div>
+          <p>date</p>
+          <div class="entry-text" id = "count-down"></div>
+          <p>date</p>
+          <div class="entry-text" id = "weather"></div>
+         <div>
     </div>
-  </div>
+  </main>
+  <footer>
+    Emily K.
+  </footer>
 
 
 </body>

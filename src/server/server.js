@@ -28,7 +28,7 @@ app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
     .then(data => getWeatherInfo(data))
     .then(weatherData => getPhoto(weatherData))
-    .then(weatherData => res.send(weatherData))
+    .then(finalData => res.send(finalData))
 })
 
 const getGeoInfo = async (req) => {
