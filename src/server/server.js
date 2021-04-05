@@ -95,13 +95,10 @@ function dateTransform(date) {
 }
 
 const getPhoto = async (weatherData) => {
-    console.log("real", weatherData);
     const pixaBayURL = 'https://pixabay.com/api/?key=';
     const photoAPI = process.env.PIXABAY_KEY;
     const cityQ = "&q=" + encodeURIComponent(weatherData.geoData.city);
-    console.log("city", cityQ)
     const countryQ =   "&q=" + encodeURIComponent(weatherData.geoData.country);
-    console.log("country", countryQ);
     const otherSetting = "&editors_choice=true&image_type=photo"
 
     try {
