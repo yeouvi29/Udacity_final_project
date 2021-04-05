@@ -1,9 +1,9 @@
+import 'regenerator-runtime/runtime'
+
 const { default: fetch } = require("node-fetch");
 
-
-
 function getData (event) {
-    event.preventDefault()
+    event.preventDefault();
     if(document.getElementById("city-image").firstChild){
         document.getElementById("city-image").removeChild(document.getElementById("city-image").childNodes[0]);
     }
@@ -11,22 +11,23 @@ function getData (event) {
         const cityName = document.getElementById("city-input").value;
         let departureDate = document.getElementById("start-date").value;
         let endDate = document.getElementById("end-date").value;
-     
-         if (Client.checkForDate(departureDate) && Client.checkForDate(endDate)) {
-                 postWeather( 
-                 { city:cityName, startDate: departureDate, endDate: endDate })
-                 .then(
-                   data =>  updateUI(data)
-                 )
-         } else {
-             alert("I can't find your zip code.\n Please enter your zip code again.");
-         }
-};
 
+        /*Check date format with checkForDate function*/
+        if (Client.checkForDate(departureDate) && Client.checkForDate(endDate)) {
+                /*Send input data to server*/
+                postWeather( 
+                { city:cityName, startDate: departureDate, endDate: endDate })
+                .then(
+                  data =>  updateUI(data)
+                )
+        } else {
+            alert("Please enter the date in MM/DD/YYYY format");
+        }
+};
 
 /* POST */
 const postWeather = async (data = {}) => {
-    console.log("hello")
+    /*Receive data from server*/
     const response = await fetch("/addGeo", {
         method: 'POST', 
         credentials: 'same-origin', 
@@ -54,12 +55,12 @@ const updateUI = receivedData => {
     const timeDifference = dDay.getTime() - date.getTime();
     const remainingDays = Math.ceil(timeDifference / ( 1000 * 60 * 60 * 24));
 
-    /*create image element for adding photo from pixaBay source*/
+    /*Create image element for adding photo from pixaBay source*/
     const img = document.createElement("img");
     img.setAttribute('src', receivedData.photoData.photo);
     img.setAttribute('id', "cityphoto");
     
-
+    /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
     document.getElementById("count-down").innerHTML = remainingDays + " days away to";
