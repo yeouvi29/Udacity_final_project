@@ -4,21 +4,23 @@ const { default: fetch } = require("node-fetch");
 
 function getData (event) {
     event.preventDefault()
-   
-    const cityName = document.getElementById("city-input").value;
-    let departureDate = document.getElementById("start-date").value;
-    let endDate = document.getElementById("end-date").value;
-
-    console.log("it's clicked")
-    if (Client.checkForDate(departureDate) && Client.checkForDate(endDate)) {
-            postWeather( 
-            { city:cityName, startDate: departureDate, endDate: endDate })
-            .then(
-              data =>  updateUI(data)
-            )
-    } else {
-        alert("I can't find your zip code.\n Please enter your zip code again.");
+    if(document.getElementById("city-image").firstChild){
+        document.getElementById("city-image").removeChild(document.getElementById("city-image").childNodes[0]);
     }
+        console.log("event",event)
+        const cityName = document.getElementById("city-input").value;
+        let departureDate = document.getElementById("start-date").value;
+        let endDate = document.getElementById("end-date").value;
+     
+         if (Client.checkForDate(departureDate) && Client.checkForDate(endDate)) {
+                 postWeather( 
+                 { city:cityName, startDate: departureDate, endDate: endDate })
+                 .then(
+                   data =>  updateUI(data)
+                 )
+         } else {
+             alert("I can't find your zip code.\n Please enter your zip code again.");
+         }
 };
 
 
@@ -59,7 +61,7 @@ const updateUI = receivedData => {
     
 
     document.getElementById("city-image").appendChild(img);
-    document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;display:block;margin:auto;opacity:1";
+    document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
     document.getElementById("count-down").innerHTML = remainingDays + " days away to";
     document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
     document.getElementById("period").innerHTML = receivedData.geoData.startDate + " - " + receivedData.geoData.endDate;
