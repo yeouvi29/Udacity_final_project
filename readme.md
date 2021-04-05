@@ -17,3 +17,9 @@ This project is about making a website that can search information.
 
 - Development Server: http://localhost:8080
 - Production Server: http://localhost:8081
+
+## How to run Server
+
+- npm install
+- npm run build-dev(for development mode) / npm run build-prod(for production mode)
+- npm start
