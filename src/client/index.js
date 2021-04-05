@@ -1,16 +1,14 @@
-import { performAction } from './js/app'
-import { checkForZip } from './js/zipChecker'
-import {updateUI}  from './js/app'
+import { getData } from './js/app'
+import { checkForDate } from './js/dateChecker'
+
 
 
 import './styles/style.scss'
  
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('generate').addEventListener('click', getData);
 
 
 export {
-    performAction,
-    checkForZip,
-    updateUI
-
+    getData,
+    checkForDate,
 }

@@ -43,7 +43,8 @@ const getGeoInfo = async (req) => {
         })
         const geoData = {
             city: req.body.city,
-            date: req.body.date,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
             city: response.data.geonames[0].name,
             country: response.data.geonames[0].countryName,
             latitude: response.data.geonames[0].lat,
@@ -59,15 +60,12 @@ const getWeatherInfo = async (geoData) => {
     console.log(geoData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
-    const day = geoData.date.slice(0,2);
-    const nextDay = "0" + (parseInt(day) + 1).toString();
-    const month = geoData.date.slice(3,5);
-    const year = geoData.date.slice(6,10);
-    const changeDateFormat = month + "-" + day;
-    const setNextDay = month + "-" + nextDay;
+    const startDate = dateTransform(geoData.startDate);
+    console.log(startDate);
+    const endDate = dateTransform(geoData.endDate);
     const lat = "&lat=" + (Math.round(geoData.latitude * 100) / 100);
     const lon = "&lon=" + (Math.round(geoData.longitude* 100) / 100);
-    const date = "&start_day=" + changeDateFormat + "&end_day=" + setNextDay + "&units=I";
+    const date = "&start_day=" + startDate + "&end_day=" + endDate + "&units=I";
 
     try {
         const response = await axios({
@@ -89,21 +87,42 @@ const getWeatherInfo = async (geoData) => {
     }   
 }
 
+function dateTransform(date) {
+    const day = date.slice(0,2);
+    const month = date.slice(3,5);
+    const changeDateFormat = month + "-" + day;
+    return changeDateFormat;
+}
+
 const getPhoto = async (weatherData) => {
     console.log("real", weatherData);
     const pixaBayURL = 'https://pixabay.com/api/?key=';
     const photoAPI = process.env.PIXABAY_KEY;
-    const q = "&q=" + encodeURIComponent(weatherData.geoData.city);
+    const cityQ = "&q=" + encodeURIComponent(weatherData.geoData.city);
+    console.log("city", cityQ)
+    const countryQ =   "&q=" + encodeURIComponent(weatherData.geoData.country);
+    console.log("country", countryQ);
     const otherSetting = "&editors_choice=true&image_type=photo"
 
     try {
         const response =  await axios({
         method: "post",
-        url: pixaBayURL + photoAPI + q + otherSetting
+        url: pixaBayURL + photoAPI + cityQ + otherSetting
         })
         const photoData = {photo: ""};
         if (response.data.total === 0) {
-            photoData.photo = "https://pixabay.com/photos/beach-beautiful-beetle-classic-car-1853939/"
+            try {
+                const res = await axios({
+                method: "post",
+                url: pixaBayURL + photoAPI + countryQ + otherSetting
+                })
+                photoData.photo = res.data.hits[0].webformatURL
+                weatherData.photoData = photoData
+                console.log("weatherData", weatherData)
+                return weatherData;   
+            } catch (err) {
+                console.log("error", err)
+            } 
         } else {
             photoData.photo = response.data.hits[0].webformatURL
         }
