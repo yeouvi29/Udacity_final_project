@@ -52,8 +52,11 @@ const updateUI = receivedData => {
     /*Calculate remaining date*/
     const date = new Date();
     const dDay = new Date(receivedData.geoData.startDate);
-    const timeDifference = dDay.getTime() - date.getTime();
-    const remainingDays = Math.ceil(timeDifference / ( 1000 * 60 * 60 * 24));
+    const eDay = new Date(receivedData.geoData.endDate);
+    const timeDiffFromToday = dDay.getTime() - date.getTime();
+    const timeDiffFromDDay = eDay.getTime() - dDay.getTime();
+    const remainingDaysFromToday = Math.ceil(timeDiffFromToday / ( 1000 * 60 * 60 * 24));
+    const remainingDaysFromDDay = Math.ceil(timeDiffFromDDay / ( 1000 * 60 * 60 * 24));
 
     /*Create image element for adding photo from pixaBay source*/
     const img = document.createElement("img");
@@ -63,9 +66,10 @@ const updateUI = receivedData => {
     /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
-    document.getElementById("count-down").innerHTML = remainingDays + " days away to";
+    document.getElementById("period").innerHTML = receivedData.geoData.startDate + " - " + receivedData.geoData.endDate + "(" + remainingDaysFromDDay + " days)";
+    document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
     document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
-    document.getElementById("period").innerHTML = receivedData.geoData.startDate + " - " + receivedData.geoData.endDate;
+    
     document.getElementById("city-info").innerHTML = "City Information";
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
     document.getElementById("weather").innerHTML = "High Temp.: " + receivedData.temperature.tempHigh + "F     " + "Low Temp.: " + receivedData.temperature.tempLow + "F";
