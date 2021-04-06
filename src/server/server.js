@@ -18,12 +18,10 @@ module.exports = app
 projectData = {};
 const totalData = [];
 
-app.get("/all", getData);
+app.get("/", res => {
+    res.sendFile("/index.html")
+})
 
-function getData (req, res) {
-    res.send(projectData);
-    console.log(projectData);
-}
 
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
@@ -59,8 +57,8 @@ const getGeoInfo = async (req) => {
     }   
 }
 
-const getWeatherInfo = async (geoData) => {
-    console.log(geoData);
+const getWeatherInfo = async () => {
+    console.log(totalData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
     const startDate = dateTransform(totalData[0].startDate);
@@ -79,12 +77,10 @@ const getWeatherInfo = async (geoData) => {
             tempHigh: response.data.data[0].max_temp,
             tempLow: response.data.data[0].min_temp
         }
-        let weatherData = {
-            geoData: geoData,
-            temperature: temperature
-        }
-        // console.log("weatherData", weatherData)
-        return weatherData;        
+        projectData = temperature
+        totalData.push(projectData);
+        console.log(totalData)
+        return totalData;       
     } catch (err) {
         console.log("error", err)
     }   
@@ -97,11 +93,11 @@ function dateTransform(date) {
     return changeDateFormat;
 }
 
-const getPhoto = async (weatherData) => {
+const getPhoto = async () => {
     const pixaBayURL = 'https://pixabay.com/api/?key=';
     const photoAPI = process.env.PIXABAY_KEY;
-    const cityQ = "&q=" + encodeURIComponent(weatherData.geoData.city);
-    const countryQ =   "&q=" + encodeURIComponent(weatherData.geoData.country);
+    const cityQ = "&q=" + encodeURIComponent(totalData[0].city);
+    const countryQ =   "&q=" + encodeURIComponent(totalData[0].country);
     const otherSetting = "&editors_choice=true&image_type=photo"
 
     try {
@@ -126,9 +122,10 @@ const getPhoto = async (weatherData) => {
         } else {
             photoData.photo = response.data.hits[0].webformatURL
         }
-        weatherData.photoData = photoData
-        console.log("weatherData", weatherData)
-        return weatherData;       
+        projectData = photoData;
+        totalData.push(projectData);
+        console.log(totalData)
+        return totalData;        
     } catch (err) {
         console.log("error", err)
     }   

@@ -51,8 +51,8 @@ const updateUI = receivedData => {
     console.log("receivedData",receivedData)
     /*Calculate remaining date*/
     const date = new Date();
-    const dDay = new Date(receivedData.geoData.startDate);
-    const eDay = new Date(receivedData.geoData.endDate);
+    const dDay = new Date(receivedData[0].startDate);
+    const eDay = new Date(receivedData[0].endDate);
     const timeDiffFromToday = dDay.getTime() - date.getTime();
     const timeDiffFromDDay = eDay.getTime() - dDay.getTime();
     const remainingDaysFromToday = Math.ceil(timeDiffFromToday / ( 1000 * 60 * 60 * 24));
@@ -60,19 +60,19 @@ const updateUI = receivedData => {
 
     /*Create image element for adding photo from pixaBay source*/
     const img = document.createElement("img");
-    img.setAttribute('src', receivedData.photoData.photo);
+    img.setAttribute('src', receivedData[2].photo);
     img.setAttribute('id', "cityphoto");
     
     /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
-    document.getElementById("period").innerHTML = receivedData.geoData.startDate + " - " + receivedData.geoData.endDate + "(" + remainingDaysFromDDay + " days)";
+    document.getElementById("period").innerHTML = receivedData[0].startDate + " - " + receivedData[0]].endDate + "(" + remainingDaysFromDDay + " days)";
     document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
-    document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
+    document.getElementById("location").innerHTML = receivedData[0].city + ", " + receivedData[0].country;
     
     document.getElementById("city-info").innerHTML = "City Information";
-    document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
-    document.getElementById("weather").innerHTML = "High Temp.: " + receivedData.temperature.tempHigh + "F     " + "Low Temp.: " + receivedData.temperature.tempLow + "F";
+    document.getElementById("lat-lon").innerHTML = "lat: " + receivedData[0].latitude + " & lon: " + receivedData[0].longitude;
+    document.getElementById("weather").innerHTML = "High Temp.: " + receivedData[1].tempHigh + "F     " + "Low Temp.: " + receivedData[1].tempLow + "F";
 }
 
 export {getData}
