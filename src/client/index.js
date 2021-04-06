@@ -3,7 +3,9 @@ import { checkForDate } from './js/dateChecker'
 
 import './styles/style.scss'
  
-document.getElementById('generate').addEventListener('click', getData);
+document.addEventListener('DOMContentLoaded' , () => {
+    document.getElementById('generate').addEventListener('click', getData);
+})
 
 export {
     getData,

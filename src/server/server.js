@@ -13,15 +13,16 @@ app.use(bodyParser.json())
 app.use(express.static('dist'))
 app.use(cors());
 
-const port = 8081;
-app.listen(port, function() {
-    console.log("server running")
-    console.log(`running on local host: ${port}`);
-});
+// const port = 8081;
+// app.listen(port, function() {
+//     console.log("server running")
+//     console.log(`running on local host: ${port}`);
+// });
+module.exports = app
 
-//Get route
 app.get("/", res => {
-    res.sendFile(path.resolve("dist/index.html"))
+    res.sendFile("/index.html")
+    // res.sendFile(path.resolve("dist/index.html"))
 })
 
 app.post("/addGeo", async (req, res) => {
@@ -45,7 +46,6 @@ const getGeoInfo = async (req) => {
             city: req.body.city,
             startDate: req.body.startDate,
             endDate: req.body.endDate,
-            city: response.data.geonames[0].name,
             country: response.data.geonames[0].countryName,
             latitude: response.data.geonames[0].lat,
             longitude: response.data.geonames[0].lng
@@ -123,7 +123,6 @@ const getPhoto = async (weatherData) => {
         } else {
             photoData.photo = response.data.hits[0].webformatURL
         }
-        // console.log("response", response);
         weatherData.photoData = photoData
         console.log("weatherData", weatherData)
         return weatherData;       
@@ -131,3 +130,4 @@ const getPhoto = async (weatherData) => {
         console.log("error", err)
     }   
 }
+

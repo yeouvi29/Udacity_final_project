@@ -13,7 +13,7 @@ function getData (event) {
         let endDate = document.getElementById("end-date").value;
 
         /*Check date format with checkForDate function*/
-        if (Client.checkForDate(departureDate) && Client.checkForDate(endDate)) {
+        if (Client.checkForDate(departureDate, endDate)) {
                 /*Send input data to server*/
                 postWeather( 
                 { city:cityName, startDate: departureDate, endDate: endDate })
@@ -21,7 +21,7 @@ function getData (event) {
                   data =>  updateUI(data)
                 )
         } else {
-            alert("Please enter the date in MM/DD/YYYY format");
+            alert("Please enter the end date to the later than the departure date.");
         }
 };
 

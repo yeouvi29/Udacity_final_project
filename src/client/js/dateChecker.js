@@ -1,11 +1,12 @@
-const checkForDate = (inputText => {
-    const checkText = /\//g
-    if (checkText.test(inputText) && (inputText.length === 10)) {
-        return true;
-    } else {
-        return false;
-    }
+const checkForDate = (start, end) => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
 
-})
+    if(startDate >= endDate) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 export {checkForDate}

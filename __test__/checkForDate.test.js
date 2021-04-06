@@ -1,18 +1,21 @@
 import { checkForDate } from "../src/client/js/dateChecker"
 
 describe("Validating date", () => {
-    test("Check if / is included and total length of string is 10", () => {
-        const date = "07/05/2011";
-        expect(checkForDate(date)).toBe(true);
+    test("Valid input(The departure date is earlier than the end date)", () => {
+        const startDate = "07/05/2011";
+        const endDate = "07/06/2011";
+        expect(checkForDate(startDate, endDate)).toBe(true);
     });
 
-    test("Invalid text(use different character)", () => {
-        const string = "07-05-2011";
-        expect(checkForDate(string)).toBe(false);
+    test("Invalid input(The departure date is later than the end date)", () => {
+        const startDate = "07/06/2011";
+        const endDate = "07/05/2011";
+        expect(checkForDate(startDate, endDate)).toBe(false);
     });
 
-    test("Invalisd text(no number in tens place)", () => {
-        const string = "7/5/2011";
-        expect(checkForDate(string)).toBe(false);
+    test("Invalid input(The departure date is same as the end date)", () => {
+        const startDate = "07/05/2011";
+        const endDate = "07/05/2011";
+        expect(checkForDate(startDate, endDate)).toBe(false);
     });
 });
