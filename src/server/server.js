@@ -1,7 +1,7 @@
 const dotenv = require("dotenv")
 dotenv.config()
 
-const path = require("path")
+// const path = require("path")
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
@@ -13,17 +13,17 @@ app.use(bodyParser.json())
 app.use(express.static('dist'))
 app.use(cors());
 
-// const port = 8081;
-// app.listen(port, function() {
-//     console.log("server running")
-//     console.log(`running on local host: ${port}`);
-// });
 module.exports = app
 
-app.get("/", res => {
-    res.sendFile("/index.html")
-    // res.sendFile(path.resolve("dist/index.html"))
-})
+projectData = {};
+const totalData = [];
+
+app.get("/all", getData);
+
+function getData (req, res) {
+    res.send(projectData);
+    console.log(projectData);
+}
 
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
@@ -50,7 +50,10 @@ const getGeoInfo = async (req) => {
             latitude: response.data.geonames[0].lat,
             longitude: response.data.geonames[0].lng
         }
-        return geoData;      
+        projectData = geoData;
+        totalData.push(geoData);
+        console.log(totalData)
+        return totalData;      
     } catch (err) {
         console.log("error", err)
     }   
@@ -60,11 +63,11 @@ const getWeatherInfo = async (geoData) => {
     console.log(geoData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
-    const startDate = dateTransform(geoData.startDate);
+    const startDate = dateTransform(totalData[0].startDate);
     console.log(startDate);
-    const endDate = dateTransform(geoData.endDate);
-    const lat = "&lat=" + (Math.round(geoData.latitude * 100) / 100);
-    const lon = "&lon=" + (Math.round(geoData.longitude* 100) / 100);
+    const endDate = dateTransform(totalData[0].endDate);
+    const lat = "&lat=" + (Math.round(totalData[0].latitude * 100) / 100);
+    const lon = "&lon=" + (Math.round(totalData[0].longitude* 100) / 100);
     const date = "&start_day=" + startDate + "&end_day=" + endDate + "&units=I";
 
     try {
