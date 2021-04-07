@@ -66,23 +66,20 @@ const updateUI = receivedData => {
     /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
-    document.getElementById("period").innerHTML = receivedData[0].startDate + " - " + receivedData[0].endDate + "(" + remainingDaysFromDDay + " days)";
-    document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
     document.getElementById("location").innerHTML = receivedData[0].city + ", " + receivedData[0].country;
-    
     document.getElementById("city-info").innerHTML = "City Information";
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData[0].latitude + " & lon: " + receivedData[0].longitude;
     document.getElementById("weather").innerHTML = "High Temp.: " + receivedData[1].tempHigh + "F     " + "Low Temp.: " + receivedData[1].tempLow + "F";
 
-        //  Change text depending on travel period
+    //  Change text depending on travel period
     if(remainingDaysFromDDay === 1) {
         document.getElementById("period").innerHTML = dateFormatTransform(receivedData[0].startDate) + " - " + dateFormatTransform(receivedData[0].endDate) + "(" + remainingDaysFromDDay + " day)";
     } else {
         document.getElementById("period").innerHTML = dateFormatTransform(receivedData[0].startDate) + " - " + dateFormatTransform(receivedData[0].endDate) + "(" + remainingDaysFromDDay + " days)";
     }
 
-     // Change text depending on remaining days
-     if(remainingDaysFromToday === 1){
+    // Change text depending on remaining days
+    if(remainingDaysFromToday === 1) {
         document.getElementById("count-down").innerHTML = remainingDaysFromToday + " day away to";
     } else if(remainingDaysFromToday === 0) {
         document.getElementById("count-down").innerHTML = "Only a few hours away to";

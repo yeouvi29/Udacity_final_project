@@ -47,7 +47,7 @@ const getGeoInfo = async (req) => {
         }
         projectData = geoData;
         totalData.push(geoData);
-        console.log(totalData)
+        console.log("geographic data",totalData)
         return totalData;      
     } catch (err) {
         console.log("error", err)
@@ -56,11 +56,9 @@ const getGeoInfo = async (req) => {
 
 //Get weather date by using API from https://api.weatherbit.io
 const getWeatherInfo = async () => {
-    console.log(totalData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
     const startDate = totalData[0].startDate.slice(5,10);
-    console.log(startDate);
     const endDate = totalData[0].endDate.slice(5,10);
     const lat = "&lat=" + (Math.round(totalData[0].latitude * 100) / 100);
     const lon = "&lon=" + (Math.round(totalData[0].longitude* 100) / 100);
@@ -77,7 +75,6 @@ const getWeatherInfo = async () => {
         }
         projectData = temperature
         totalData.push(projectData);
-        console.log(totalData)
         return totalData;       
     } catch (err) {
         console.log("error", err)
@@ -97,16 +94,15 @@ const getPhoto = async () => {
         method: "post",
         url: pixaBayURL + photoAPI + cityQ + otherSetting
         })
-        console.log(response.data)
         if (response.data.total === 0) {
             try {
                 const res = await axios({
                 method: "post",
                 url: pixaBayURL + photoAPI + countryQ + otherSetting
                 })
-                projectData= {photo: res.data.hits[0].webformatURL}
+                projectData = {photo: res.data.hits[0].webformatURL}
                 totalData.push(projectData);
-                console.log(totalData)
+                console.log("total data", totalData)
                 return totalData;   
             } catch (err) {
                 console.log("error", err)
@@ -114,7 +110,7 @@ const getPhoto = async () => {
         } else {
             projectData = {photo: response.data.hits[0].webformatURL}
             totalData.push(projectData);
-            console.log(totalData)
+            console.log("total data", totalData)
             return totalData;   
         }    
     } catch (err) {
