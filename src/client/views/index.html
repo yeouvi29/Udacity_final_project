@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html land="en">
+<html land="en-us">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,22 +17,22 @@
     <div class ="holder headline">Plan your new journey</div>
   </header>
   <div class="main-content">
-    <div class="input-section">
+    <form class="input-section">
         <!-- data input -->
       <div class ="input city">
         <label for="city-input" class="city-here">City name</label>
-        <input type="text" id="city-input" required placeholder="Where are you going?" name="city"/>
+        <input type="text" id="city-input" placeholder="Where are you going?" name="city"  required/>
       </div>
       <div class ="input date">
         <label for="start-date" class="date-here">Departure date</label>
-        <input type="text" id="start-date" required placeholder="MM/DD/YYYY" name="date"/>
+        <input type="date" id="start-date" placeholder="MM/DD/YYYY" name="date" required/>
       </div>
       <div class ="input date">
         <label for="end-date" class="date-here">End date</label>
-        <input type="text" id="end-date" required placeholder="MM/DD/YYYY" name="date"/>
+        <input type="date" id="end-date" placeholder="MM/DD/YYYY" name="date"  required/>
       </div>
       <button id="generate" type = "submit"><i class="fas fa-search"></i></button>
-    </div> 
+    </form> 
     <!-- UI update -->
     <div class="result-section">   
       <img id ="beach-img" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg" alt="beach-image"/>

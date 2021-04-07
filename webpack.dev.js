@@ -12,7 +12,7 @@ module.exports = {
         library: 'Client'
     },
     devServer: {
-        port: 3000
+        port: 8080
     },
     stats: 'verbose',
     module: {

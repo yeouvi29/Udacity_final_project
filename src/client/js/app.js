@@ -66,14 +66,31 @@ const updateUI = receivedData => {
     /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
-    document.getElementById("period").innerHTML = receivedData.geoData.startDate + " - " + receivedData.geoData.endDate + "(" + remainingDaysFromDDay + " days)";
-    document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
-    document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
     
+    
+    document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
     document.getElementById("city-info").innerHTML = "City Information";
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
     document.getElementById("weather").innerHTML = "High Temp.: " + receivedData.temperature.tempHigh + "F     " + "Low Temp.: " + receivedData.temperature.tempLow + "F";
+    
+    if(remainingDaysFromDDay === 1) {
+        document.getElementById("period").innerHTML = dateFormatTransform(receivedData.geoData.startDate) + " - " + dateFormatTransform(receivedData.geoData.endDate) + "(" + remainingDaysFromDDay + " day)";
+    } else {
+        document.getElementById("period").innerHTML = dateFormatTransform(receivedData.geoData.startDate) + " - " + dateFormatTransform(receivedData.geoData.endDate) + "(" + remainingDaysFromDDay + " days)";
+    }
+
+    if(remainingDaysFromToday === 1){
+        document.getElementById("count-down").innerHTML = remainingDaysFromToday + " day away to";
+    } else if(remainingDaysFromToday === 0) {
+        document.getElementById("count-down").innerHTML = "Only a few hours away to";
+    } else {
+        document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
+    }
 }
 
+const dateFormatTransform = yyyymmdd => {
+    const transformedDate = (yyyymmdd).slice(5,7) + "/" + (yyyymmdd).slice(8,10) + "/" + (yyyymmdd).slice(0,4)
+    return transformedDate;
+}
 export {getData}
 

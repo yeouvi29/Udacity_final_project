@@ -24,12 +24,15 @@ app.get("/", res => {
     res.sendFile("/index.html")
     // res.sendFile(path.resolve("dist/index.html"))
 })
-
+let tripData = [];
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
     .then(data => getWeatherInfo(data))
     .then(weatherData => getPhoto(weatherData))
-    .then(finalData => res.send(finalData))
+    .then(finalData => {
+        tripData.push(finalData) 
+        res.send(finalData)
+    })
 })
 
 const getGeoInfo = async (req) => {
@@ -60,9 +63,9 @@ const getWeatherInfo = async (geoData) => {
     console.log(geoData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
-    const startDate = dateTransform(geoData.startDate);
+    const startDate = geoData.startDate.slice(5,10);
     console.log(startDate);
-    const endDate = dateTransform(geoData.endDate);
+    const endDate = geoData.endDate.slice(5,10);
     const lat = "&lat=" + (Math.round(geoData.latitude * 100) / 100);
     const lon = "&lon=" + (Math.round(geoData.longitude* 100) / 100);
     const date = "&start_day=" + startDate + "&end_day=" + endDate + "&units=I";
@@ -87,12 +90,12 @@ const getWeatherInfo = async (geoData) => {
     }   
 }
 
-function dateTransform(date) {
-    const day = date.slice(0,2);
-    const month = date.slice(3,5);
-    const changeDateFormat = month + "-" + day;
-    return changeDateFormat;
-}
+// function dateTransform(date) {
+//     const day = date.slice(5,10);
+//     const month = date.slice(3,5);
+//     const changeDateFormat = month + "-" + day;
+//     return changeDateFormat;
+// }
 
 const getPhoto = async (weatherData) => {
     const pixaBayURL = 'https://pixabay.com/api/?key=';
