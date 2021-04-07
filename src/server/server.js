@@ -8,23 +8,17 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const axios = require("axios")
 
+let tripData = [];
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static('dist'))
 app.use(cors());
 
-// const port = 8081;
-// app.listen(port, function() {
-//     console.log("server running")
-//     console.log(`running on local host: ${port}`);
-// });
-module.exports = app
-
 app.get("/", res => {
     res.sendFile("/index.html")
-    // res.sendFile(path.resolve("dist/index.html"))
 })
-let tripData = [];
+
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
     .then(data => getWeatherInfo(data))
@@ -83,19 +77,11 @@ const getWeatherInfo = async (geoData) => {
             geoData: geoData,
             temperature: temperature
         }
-        // console.log("weatherData", weatherData)
         return weatherData;        
     } catch (err) {
         console.log("error", err)
     }   
 }
-
-// function dateTransform(date) {
-//     const day = date.slice(5,10);
-//     const month = date.slice(3,5);
-//     const changeDateFormat = month + "-" + day;
-//     return changeDateFormat;
-// }
 
 const getPhoto = async (weatherData) => {
     const pixaBayURL = 'https://pixabay.com/api/?key=';
@@ -134,3 +120,4 @@ const getPhoto = async (weatherData) => {
     }   
 }
 
+module.exports = app
