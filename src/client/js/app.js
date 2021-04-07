@@ -73,12 +73,14 @@ const updateUI = receivedData => {
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
     document.getElementById("weather").innerHTML = "High Temp.: " + receivedData.temperature.tempHigh + "F     " + "Low Temp.: " + receivedData.temperature.tempLow + "F";
     
+    //  Change text depending on travel period
     if(remainingDaysFromDDay === 1) {
         document.getElementById("period").innerHTML = dateFormatTransform(receivedData.geoData.startDate) + " - " + dateFormatTransform(receivedData.geoData.endDate) + "(" + remainingDaysFromDDay + " day)";
     } else {
         document.getElementById("period").innerHTML = dateFormatTransform(receivedData.geoData.startDate) + " - " + dateFormatTransform(receivedData.geoData.endDate) + "(" + remainingDaysFromDDay + " days)";
     }
 
+    // Change text depending on remaining days
     if(remainingDaysFromToday === 1){
         document.getElementById("count-down").innerHTML = remainingDaysFromToday + " day away to";
     } else if(remainingDaysFromToday === 0) {
@@ -88,9 +90,11 @@ const updateUI = receivedData => {
     }
 }
 
+// Change date format yyyy-mm-dd to mm/dd/yyyy
 const dateFormatTransform = yyyymmdd => {
     const transformedDate = (yyyymmdd).slice(5,7) + "/" + (yyyymmdd).slice(8,10) + "/" + (yyyymmdd).slice(0,4)
     return transformedDate;
 }
+
 export {getData}
 
