@@ -61,9 +61,9 @@ const getWeatherInfo = async () => {
     console.log(totalData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
     const weaAPI = process.env.WEATHER_KEY;
-    const startDate = dateTransform(totalData[0].startDate);
+    const startDate = totalData[0].startDate.slice(5,10);
     console.log(startDate);
-    const endDate = dateTransform(totalData[0].endDate);
+    const endDate = totalData[0].endDate.slice(5,10);
     const lat = "&lat=" + (Math.round(totalData[0].latitude * 100) / 100);
     const lon = "&lon=" + (Math.round(totalData[0].longitude* 100) / 100);
     const date = "&start_day=" + startDate + "&end_day=" + endDate + "&units=I";
@@ -84,13 +84,6 @@ const getWeatherInfo = async () => {
     } catch (err) {
         console.log("error", err)
     }   
-}
-
-function dateTransform(date) {
-    const day = date.slice(0,2);
-    const month = date.slice(3,5);
-    const changeDateFormat = month + "-" + day;
-    return changeDateFormat;
 }
 
 const getPhoto = async () => {

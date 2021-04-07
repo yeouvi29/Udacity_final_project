@@ -73,7 +73,32 @@ const updateUI = receivedData => {
     document.getElementById("city-info").innerHTML = "City Information";
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData[0].latitude + " & lon: " + receivedData[0].longitude;
     document.getElementById("weather").innerHTML = "High Temp.: " + receivedData[1].tempHigh + "F     " + "Low Temp.: " + receivedData[1].tempLow + "F";
+
+        //  Change text depending on travel period
+    if(remainingDaysFromDDay === 1) {
+        document.getElementById("period").innerHTML = dateFormatTransform(receivedData[0].startDate) + " - " + dateFormatTransform(receivedData[0].endDate) + "(" + remainingDaysFromDDay + " day)";
+    } else {
+        document.getElementById("period").innerHTML = dateFormatTransform(receivedData[0].startDate) + " - " + dateFormatTransform(receivedData[0].endDate) + "(" + remainingDaysFromDDay + " days)";
+    }
+
+     // Change text depending on remaining days
+     if(remainingDaysFromToday === 1){
+        document.getElementById("count-down").innerHTML = remainingDaysFromToday + " day away to";
+    } else if(remainingDaysFromToday === 0) {
+        document.getElementById("count-down").innerHTML = "Only a few hours away to";
+    } else {
+        document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
+    }
 }
+
+// Change date format yyyy-mm-dd to mm/dd/yyyy
+const dateFormatTransform = yyyymmdd => {
+    const transformedDate = (yyyymmdd).slice(5,7) + "/" + (yyyymmdd).slice(8,10) + "/" + (yyyymmdd).slice(0,4)
+    return transformedDate;
+}
+
+
+
 
 export {getData}
 
