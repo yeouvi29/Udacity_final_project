@@ -66,7 +66,7 @@ const updateUI = receivedData => {
     /*Update UI with updated data*/
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
-    document.getElementById("period").innerHTML = receivedData[0].startDate + " - " + receivedData[0]].endDate + "(" + remainingDaysFromDDay + " days)";
+    document.getElementById("period").innerHTML = receivedData[0].startDate + " - " + receivedData[0].endDate + "(" + remainingDaysFromDDay + " days)";
     document.getElementById("count-down").innerHTML = remainingDaysFromToday + " days away to";
     document.getElementById("location").innerHTML = receivedData[0].city + ", " + receivedData[0].country;
     
