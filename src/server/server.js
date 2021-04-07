@@ -1,7 +1,6 @@
 const dotenv = require("dotenv")
 dotenv.config()
 
-// const path = require("path")
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
@@ -13,15 +12,12 @@ app.use(bodyParser.json())
 app.use(express.static('dist'))
 app.use(cors());
 
-module.exports = app
-
 projectData = {};
 const totalData = [];
 
 app.get("/", res => {
     res.sendFile("/index.html")
 })
-
 
 app.post("/addGeo", async (req, res) => {
     getGeoInfo(req)
@@ -30,6 +26,7 @@ app.post("/addGeo", async (req, res) => {
     .then(finalData => res.send(finalData))
 })
 
+//Get geographic data by using API from http://geonames.org
 const getGeoInfo = async (req) => {
     const geoBaseURL = 'http://api.geonames.org/searchJSON?q='
     const geoAPI = process.env.GEO_KEY
@@ -57,6 +54,7 @@ const getGeoInfo = async (req) => {
     }   
 }
 
+//Get weather date by using API from https://api.weatherbit.io
 const getWeatherInfo = async () => {
     console.log(totalData);
     const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
@@ -86,6 +84,7 @@ const getWeatherInfo = async () => {
     }   
 }
 
+//Get photo by using API from https://pixabay.com
 const getPhoto = async () => {
     const pixaBayURL = 'https://pixabay.com/api/?key=';
     const photoAPI = process.env.PIXABAY_KEY;
@@ -98,29 +97,30 @@ const getPhoto = async () => {
         method: "post",
         url: pixaBayURL + photoAPI + cityQ + otherSetting
         })
-        const photoData = {photo: ""};
+        console.log(response.data)
         if (response.data.total === 0) {
             try {
                 const res = await axios({
                 method: "post",
                 url: pixaBayURL + photoAPI + countryQ + otherSetting
                 })
-                photoData.photo = res.data.hits[0].webformatURL
-                weatherData.photoData = photoData
-                console.log("weatherData", weatherData)
-                return weatherData;   
+                projectData= {photo: res.data.hits[0].webformatURL}
+                totalData.push(projectData);
+                console.log(totalData)
+                return totalData;   
             } catch (err) {
                 console.log("error", err)
             } 
         } else {
-            photoData.photo = response.data.hits[0].webformatURL
-        }
-        projectData = photoData;
-        totalData.push(projectData);
-        console.log(totalData)
-        return totalData;        
+            projectData = {photo: response.data.hits[0].webformatURL}
+            totalData.push(projectData);
+            console.log(totalData)
+            return totalData;   
+        }    
     } catch (err) {
         console.log("error", err)
     }   
 }
+
+module.exports = app
 
