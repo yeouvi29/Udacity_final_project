@@ -7,6 +7,7 @@ const app = express()
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const axios = require("axios")
+const _ = require("lodash")
 
 let tripData = [];
 
@@ -40,7 +41,7 @@ const getGeoInfo = async (req) => {
         url: geoBaseURL + req.body.city + maxRows + geoAPI
         })
         const geoData = {
-            city: req.body.city,
+            city: _.startCase(_.lowerCase(req.body.city)),
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             country: response.data.geonames[0].countryName,
