@@ -40,13 +40,14 @@ const getGeoInfo = async (req) => {
         url: geoBaseURL + req.body.city + maxRows + geoAPI
         })
         const geoData = {
-            city: req.body.city,
+            city: req.body.city.split(" ").map(a => a[0].toUpperCase() + a.slice(1).toLowerCase()).join(" "),
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             country: response.data.geonames[0].countryName,
             latitude: response.data.geonames[0].lat,
             longitude: response.data.geonames[0].lng
         }
+        console.log(geoData.city);
         return geoData;      
     } catch (err) {
         console.log("error", err)

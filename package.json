@@ -41,5 +41,13 @@
     "terser-webpack-plugin": "^1.4.5",
     "webpack-dev-server": "^3.11.2",
     "workbox-webpack-plugin": "^6.1.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeouvi29/Udacity_final_project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yeouvi29/Udacity_final_project/issues"
+  },
+  "homepage": "https://github.com/yeouvi29/Udacity_final_project#readme"
 }
