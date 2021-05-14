@@ -27,7 +27,7 @@ function getData (event) {
 
 /* POST */
 const postWeather = async (data = {}) => {
-    /*Receive data from server*/
+    /*Send data to server*/
     const response = await fetch("/addGeo", {
         method: 'POST', 
         credentials: 'same-origin', 
@@ -38,8 +38,9 @@ const postWeather = async (data = {}) => {
     });
 
     try {
-        // newData: data from three websites
+        // travelData: data from three websites
         const travelData = await response.json();
+        console.log(travelData);
         return travelData;
     } catch(error) {
         console.log("error", error);

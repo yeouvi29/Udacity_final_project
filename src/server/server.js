@@ -26,6 +26,7 @@ app.post("/addGeo", async (req, res) => {
     .then(finalData => {
         tripData.push(finalData) 
         res.send(finalData)
+        console.log(tripData);
     })
 })
 
