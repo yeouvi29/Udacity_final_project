@@ -18,7 +18,10 @@ function getData (event) {
                 postWeather( 
                 { city:cityName, startDate: departureDate, endDate: endDate })
                 .then(
-                  data =>  updateUI(data)
+                  data => { 
+                      updateUI(data)
+                      console.log(data)
+                  }
                 )
         } else {
             alert("Please enter the end date to the later than the departure date.");
