@@ -15,6 +15,7 @@ function getData (event) {
         /*Check date format with checkForDate function*/
         if (Client.checkForDate(departureDate, endDate)) {
                 /*Send input data to server*/
+                console.log(departureDate,endDate, cityName);
                 postWeather( 
                 { city:cityName, startDate: departureDate, endDate: endDate })
                 .then(
