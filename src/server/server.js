@@ -20,6 +20,7 @@ app.get("/", res => {
 })
 
 app.post("/addGeo", async (req, res) => {
+    console.log(req);
     getGeoInfo(req)
     .then(data => getWeatherInfo(data))
     .then(weatherData => getPhoto(weatherData))

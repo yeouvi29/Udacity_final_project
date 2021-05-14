@@ -31,26 +31,26 @@ function getData (event) {
 
 /* POST */
 const postWeather = async (data = {}) => {
-    console.log(data);
-    let body = JSON.stringify(data);
-    console.log(body);
-    // const response = await fetch("/addGeo", {
-    //     method: 'POST', 
-    //     credentials: 'same-origin', 
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),     
-    // });
+    // console.log(data);
+    // let body = JSON.stringify(data);
+    // console.log(body);
+    const response = await fetch("/addGeo", {
+        method: 'POST', 
+        credentials: 'same-origin', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),     
+    });
 
-    // try {
-    //     // travelData: data from three websites
-    //     const travelData = await response.json();
-    //     console.log(travelData);
-    //     return travelData;
-    // } catch(error) {
-    //     console.log("error", error);
-    // }
+    try {
+        // travelData: data from three websites
+        const travelData = await response.json();
+        console.log(travelData);
+        return travelData;
+    } catch(error) {
+        console.log("error", error);
+    }
 }
 
 /* Update UI */
