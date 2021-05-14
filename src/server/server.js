@@ -56,7 +56,7 @@ const getGeoInfo = async (req) => {
 
 const getWeatherInfo = async (geoData) => {
     console.log(geoData);
-    const weaBaseURL = 'https://api.weatherbit.io/v2.0/normals?key=';
+    const weaBaseURL = `https://api.weatherbit.io/v2.0/current?lat=${geoData.latitude}&lon=${geoData.longitude}&key=`;
     const weaAPI = process.env.WEATHER_KEY;
     const startDate = geoData.startDate.slice(5,10);
     console.log(startDate);
@@ -71,8 +71,8 @@ const getWeatherInfo = async (geoData) => {
             url: weaBaseURL + weaAPI + lat + lon + date
         })
         const temperature = {
-            tempHigh: response.data.data[0].max_temp,
-            tempLow: response.data.data[0].min_temp
+            tempIcon: response.data.data[0].weather.icon,
+            temp: response.data.data[0].app_temp
         }
         let weatherData = {
             geoData: geoData,
@@ -96,6 +96,7 @@ const getPhoto = async (weatherData) => {
         method: "post",
         url: pixaBayURL + photoAPI + cityQ + otherSetting
         })
+        console.log(pixaBayURL + photoAPI + cityQ + otherSetting);
         const photoData = {photo: ""};
         if (response.data.total === 0) {
             try {
@@ -103,10 +104,15 @@ const getPhoto = async (weatherData) => {
                 method: "post",
                 url: pixaBayURL + photoAPI + countryQ + otherSetting
                 })
-                photoData.photo = res.data.hits[0].webformatURL
-                weatherData.photoData = photoData
-                console.log("weatherData", weatherData)
-                return weatherData;   
+                if (response.data.total === 0) {
+                    photoData.photo = 'https://cdn.pixabay.com/photo/2015/10/30/20/13/sunrise-1014712_960_720.jpg'
+                    weatherData.photoData = photoData
+                } else {
+                    photoData.photo = res.data.hits[0].webformatURL
+                    weatherData.photoData = photoData
+                    console.log("weatherData", weatherData)
+                    return weatherData;   
+                }
             } catch (err) {
                 console.log("error", err)
             } 

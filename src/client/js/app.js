@@ -67,12 +67,14 @@ const updateUI = receivedData => {
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
     
-    
+    const imageUrl = "https://weatherbit.io/static/img/icons/" + receivedData.temperature.tempIcon + ".png" 
+    const newImage = document.createElement("img");
+    newImage.src = imageUrl;
     document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
     document.getElementById("city-info").innerHTML = "City Information";
     document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
-    document.getElementById("weather").innerHTML = "High Temp.: " + receivedData.temperature.tempHigh + "F     " + "Low Temp.: " + receivedData.temperature.tempLow + "F";
-    
+    document.getElementById("weather").innerHTML = "Temp.: " + receivedData.temperature.temp + "F     ";
+    document.getElementById("weather").appendChild(newImage); 
     //  Change text depending on travel period
     if(remainingDaysFromDDay === 1) {
         document.getElementById("period").innerHTML = dateFormatTransform(receivedData.geoData.startDate) + " - " + dateFormatTransform(receivedData.geoData.endDate) + "(" + remainingDaysFromDDay + " day)";
