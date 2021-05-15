@@ -17,6 +17,7 @@ app.use(cors());
 
 app.get("/", res => {
     res.sendFile("/index.html")
+    console.log("hi")
 })
 
 app.post("/addGeo", async (req, res) => {
