@@ -16,7 +16,7 @@ app.use(express.static('dist'))
 app.use(cors());
 
 app.get("/", res => {
-    res.sendfile("path-to-file");
+    res.sendFile("path-to-file");
 });
 
 app.post("/addGeo", async (req, res) => {
