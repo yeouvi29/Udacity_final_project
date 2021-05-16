@@ -1,48 +1,18 @@
-@import 'config';
+@import "abstracts/variables";
 
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
 
+@import "components/bg-video";
+@import "components/button";
+@import "components/input";
+@import "components/result";
 
-
-
-
-
-
-
-footer {
-    margin: 0 auto;
-}
-
-
-input {
-    border: none;
-    font-size: 1em;
-    height: 30px;
-    margin-top: 5px;
-    padding-left: 3px;
-}
-
-/* Style for Placeholder Text*/
-input::placeholder {
-    /* Firefox, Chrome, Opera */
-    color: $grey;
-    font-family: 'Open Sans', sans-serif;
-}
-
-input[type=date]:invalid::-webkit-datetime-edit {
-    color: $grey;
-}
-
-:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: $grey;
-    font-family: 'Open Sans', sans-serif;
-}
-
-::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: $grey;
-    font-family: 'Open Sans', sans-serif;
-}
+@import "layout/footer";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/main";
 
 @media(max-width: 800px) {
     body {
@@ -133,3 +103,4 @@ input[type=date]:invalid::-webkit-datetime-edit {
         margin-bottom: 30px;
     }
 }
+

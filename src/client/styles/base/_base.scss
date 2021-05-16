@@ -15,5 +15,6 @@ body {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-rows: 80px 1fr 80px;
+    grid-template-rows: 12rem 1fr 8rem;
+    box-sizing: border-box;
 }

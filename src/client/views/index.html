@@ -7,35 +7,43 @@
   <title>Travel Planner</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Sacramento&family=Sail&family=Work+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Sacramento&family=Sail&family=Work+Sans&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/79f2ca8cc8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
+  <header class="header">
     <div class ="holder headline">Plan your new journey</div>
   </header>
   <div class="main-content">
+    <div class="bg-video">
+      <video class="bg-video__content" autoplay muted loop>
+        <source src="../video/ocean.mp4" type="video/mp4">
+        <source src="../video/ocean.webm" type="video/webm">
+        Your browser is not supported.
+      </video>
+    </div>
+    
     <form class="input-section">
         <!-- data input -->
-      <div class ="input city">
-        <label for="city-input" class="city-here">City name</label>
-        <input type="text" id="city-input" placeholder="Where are you going?" name="city"  required/>
+      <div class ="input input--1 city">
+        <label for="city-input" class="city-title city-here">City name</label>
+        <input type="text" class="city-input" id="city-input" placeholder="Where are you going?" name="city"  required/>
       </div>
-      <div class ="input date">
-        <label for="start-date" class="date-here">Departure date</label>
-        <input type="date" id="start-date" placeholder="MM/DD/YYYY" name="date" required/>
+      <div class ="input input--2 date">
+        <label for="start-date" class="city-title date-here">Departure date</label>
+        <input type="date" class="city-input" id="start-date" placeholder="MM/DD/YYYY" name="date" required/>
       </div>
-      <div class ="input date">
-        <label for="end-date" class="date-here">End date</label>
-        <input type="date" id="end-date" placeholder="MM/DD/YYYY" name="date"  required/>
+      <div class ="input input--3 date">
+        <label for="end-date" class="city-title date-here">End date</label>
+        <input type="date" class="city-input" id="end-date" placeholder="MM/DD/YYYY" name="date"  required/>
       </div>
-      <button id="generate" type = "submit"><i class="fas fa-search"></i></button>
+      <button id="generate" type = "submit" class="btn"><i class="fas fa-search"></i></button>
     </form> 
     <!-- UI update -->
     <div class="result-section">   
-      <img id ="beach-img" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg" alt="beach-image"/>
+      <!-- <img id ="beach-img" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg" alt="beach-image"/> -->
       <div id = "entry-holder">
         <div id="city-image"></div>
         <div class="entry-text" id ="period"></div>
