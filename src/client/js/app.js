@@ -78,6 +78,7 @@ const updateUI = receivedData => {
     const imageUrl = "https://weatherbit.io/static/img/icons/" + receivedData.temperature.tempIcon + ".png" 
     const newImage = document.createElement("img");
     newImage.src = imageUrl;
+    newImage.setAttribute("class", "city-info-list-1-icon");
     document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
     document.getElementById("city-info").childNodes[0].innerHTML = "City Information";
     console.log(document.getElementById("city-info").firstElementChild);

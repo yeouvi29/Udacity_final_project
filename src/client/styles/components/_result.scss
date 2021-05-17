@@ -1,22 +1,24 @@
 .result {
     z-index: 1;
-    width: 80%;
+    width: 70%;
     height: 100%;
     margin: 5rem auto;
     padding-top: 1rem;
-    opacity: 0;
+    opacity: 1;
 
     &--container {
-        border-radius: 3px;
+        border-radius: 3rem 3px;
         display: flex;
         flex-direction: row;
         height: 90%;
         background-color: rgba($color-grey-dark, .8);
         margin: auto 10%;
         z-index: 1;
+        overflow: hidden;
 
         .result-text-container {
             padding-top: 3rem;
+            padding-left: 5rem;
             display: flex;
             flex-direction: column;
 
@@ -28,15 +30,25 @@
         }
         
         .result-img {
-            backface-visibility: hidden;
             display: block;
             width: 50%;
         }
     }
 }
+.city-info {
+    border: 1px solid $color-grey-medium;
+    padding: 1rem;
+    margin-bottom: 2rem;
 
-.weather-img {
-    transform: scale(.7);
-    display: inline;
-    margin-bottom: -4rem;
+    &-list-1 {
+        &-icon {
+            transform: scale(.7);
+            margin-bottom: -4rem;
+        }
+    }
+}
+
+
+#count-down {
+    margin-bottom: -2rem;
 }
