@@ -71,6 +71,8 @@ const updateUI = receivedData => {
     img.setAttribute('id', "cityphoto");
     
     /*Update UI with updated data*/
+    document.querySelector(".result").style.opacity = 1;
+    document.querySelector(".where").innerHTML = "";
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
     

@@ -1,99 +1,80 @@
 .input-section {
-    height: 8rem;
+    height: 9rem;
     background-color: $color-white;
     border-radius: 55px;
     display: flex;
     flex-direction: row;
-    margin: 30px auto 0 auto;
-    padding: 10px;
+    margin: 3rem auto 0 auto;
+    padding: .6rem 0;
     z-index: 2;
     
-
     .input {
         display: flex;
         flex-direction: column;
         border: none;
-
-        // height: 30px;
-        padding-right: 20px;
-        margin: 10px;
+        padding: 0 2rem 0 1rem;
+        margin: 1rem  1rem;
         min-width: 25rem;
-        padding-left: 3px;
         position: relative;
+
+        &:first-child {
+            margin-left: 20px;
+        }
 
         &--1,
         &--2 {
             border-right: 2px solid $color-grey-light;
         }
 
-        .city-title {
-            margin-bottom: 1rem;
+        &-title {
+            margin-bottom: .6rem;
         }
 
-        .city-input {
-            height: 2rem;
+        &-city {
             border: hidden;
             background-color: transparent;
-        }
 
-        &::before {
-            content: "";
-            display: inline-block;
-            height: 200%;
-            width: 110%;
-            position: absolute;
-            top: -2rem;
-            left: -2.2rem;
-            overflow: hidden;
+            &:focus {
+                outline: none;
+                border-bottom: 3px solid $color-navy;
+            }
+
         }
 
         &::after {
             content: "";
             display: inline-block;
-            height: 200%;
-            width: 108%;
+            height: 175%;
+            width: 110%;
             position: absolute;
             top: -2rem;
             left: -2rem;
             z-index: -1;
             overflow: hidden;
             border-radius: 5rem;
+            transition: all .2s;
         }
 
         &:hover {
             background-color: transparent;
             cursor: pointer;       
-        
-            &::before {
-                border-left: 2px solid $color-white;
-                border-right: 2px solid $color-white;
-            }
-
+            // border-right: 2px solid $color-white;
 
             &::after {
                 background-color: $color-grey-light;
+                transform: translateY(-.05px);
+                box-shadow: 0 2.5rem 3rem rgba($color-black, .2);
             }
         }
 
-        &--1:hover {
-            &::before {
-                border-left: none;
-                border-right: 2px solid $color-white;
-            }
-        }
-
-       
+        
     }
 }
 
 /* Style for Placeholder Text*/
 input::placeholder {
     /* Firefox, Chrome, Opera */
-    background-color: transparent;
-    color: $color-grey-medium;
-    font-family: $font-opensans;
-    border: none;
-    font-size: 1.5rem;
+
 
     &:hover {
         background-color: $color-grey-light;
@@ -116,3 +97,4 @@ input[type=date]:invalid::-webkit-datetime-edit {
     color: $color-grey-light;
     font-family: 'Open Sans', sans-serif;
 }
+
