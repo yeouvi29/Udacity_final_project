@@ -72,7 +72,6 @@ const updateUI = receivedData => {
     
     /*Update UI with updated data*/
     document.querySelector(".result").style.opacity = 1;
-    document.querySelector(".where").innerHTML = "";
     document.getElementById("city-image").appendChild(img);
     document.getElementById("cityphoto").style.cssText = "max-width:100%;max-height:100%;min-width:100%;min-height:100%;display:block;";
     
@@ -80,9 +79,10 @@ const updateUI = receivedData => {
     const newImage = document.createElement("img");
     newImage.src = imageUrl;
     document.getElementById("location").innerHTML = receivedData.geoData.city + ", " + receivedData.geoData.country;
-    document.getElementById("city-info").innerHTML = "City Information";
-    document.getElementById("lat-lon").innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
-    document.getElementById("weather").innerHTML = "Temp.: " + receivedData.temperature.temp + "F     ";
+    document.getElementById("city-info").childNodes[0].innerHTML = "City Information";
+    console.log(document.getElementById("city-info").firstElementChild);
+    document.getElementById("city-info").firstElementChild.innerHTML = "lat: " + receivedData.geoData.latitude + " & lon: " + receivedData.geoData.longitude;
+    document.getElementById("city-info").lastElementChild.innerHTML = "Temp.: " + receivedData.temperature.temp + "F     ";
     document.getElementById("weather").appendChild(newImage); 
     //  Change text depending on travel period
     if(remainingDaysFromDDay === 1) {
