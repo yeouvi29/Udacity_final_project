@@ -22,18 +22,24 @@
 }
 
 .result-text {
+    color: $color-white;
     font-size: 1.8rem;
     padding-bottom: 2rem;
+    font-family: 'Open Sans', sans-serif;
+
     &:first-child {
         margin-top: 2rem;
     }
-    
-    ul {
+}
 
-        li {
-            text-decoration: none;
-        }
-    } 
+.city-info {
+    list-style: none;
+    li {
+        font-size: 1.5rem;
+    }
+    &-list-1 {
+        margin-top: 3rem;
+    }
 }
 
 .footer {
@@ -45,15 +51,11 @@
 }
 
 #location {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-family: 'Sail', cursive;
 }
 
-#lat-lon {
-    color: $color-grey-medium;
-}
-
+#lat-lon,
 #weather {
-    color: $color-grey-medium;
-    padding-bottom: 3rem;
+    text-decoration: none;
 }

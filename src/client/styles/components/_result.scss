@@ -1,6 +1,6 @@
 .result {
     z-index: 1;
-    width: 70%;
+    width: 80%;
     height: 100%;
     margin: 5rem auto;
     padding-top: 1rem;
@@ -9,42 +9,20 @@
     &--container {
         display: flex;
         flex-direction: row;
-        width: 90%;
         height: 90%;
-        background-color: rgba($color-white, .8);
+        background-color: rgba($color-grey-dark, .8);
         margin: auto 10%;
         z-index: 1;
-        position: relative;
 
-        .where {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-        }
         .result-text-container {
+            padding-top: 3rem;
             display: flex;
             flex-direction: column;
-            align-items: stretch;
-            justify-content: space-evenly;
 
             .result-text {
-                color: $color-grey-dark;
                 margin: auto 1rem;
                 min-height: 3rem;
-                font-family: 'Open Sans', sans-serif;
-                font-size: 1.5rem;
-            }
 
-            ul {
-                list-style: none;
-            }
-
-            &:last-child {
-                img {
-                    transform: scale(.7);
-                    display: inline;
-                    margin-bottom: -4rem;
-                }
             }
         }
         
@@ -53,4 +31,10 @@
             width: 50%;
         }
     }
+}
+
+.weather-img {
+    transform: scale(.7);
+    display: inline;
+    margin-bottom: -4rem;
 }
