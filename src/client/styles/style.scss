@@ -50,6 +50,9 @@
       flex-direction: column;
       margin: 1rem;
 
+      .input {
+        margin-left: 0;
+      }
       button {
         margin: auto;
       }
@@ -68,8 +71,7 @@
         height: auto;
         display: flex;
         flex-direction: column;
-        background-color: darkseagreen;
-        color: #000;
+        background-color: #e3e0cf;
         font-size: 0.8em;
         bottom: 300px;
         display: grid;
@@ -119,7 +121,7 @@
         width: 100%;
       }
       .result-text {
-        color: #000;
+        color: #5a7670;
       }
     }
   }
