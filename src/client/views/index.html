@@ -1,53 +1,91 @@
 <!DOCTYPE html>
 <html land="en-us">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Planner</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Sacramento&family=Sail&family=Work+Sans&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Planner</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Sacramento&family=Sail&family=Work+Sans&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/79f2ca8cc8.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <header class="header">
-    <div class ="holder headline">Plan your new journey</div>
-  </header>
-  <div class="main-content">
-    <div class="bg-video">
-      <!-- <video class="bg-video__content" autoplay muted loop>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/79f2ca8cc8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="holder headline">Plan your new journey</div>
+    </header>
+    <div class="main-content">
+      <div class="bg-video">
+        <!-- <video class="bg-video__content" autoplay muted loop>
         <source src="../video/ocean.mp4" type="video/mp4">
         <source src="../video/ocean.webm" type="video/webm">
         Your browser is not supported. -->
-      <!-- <img id ="beach-img" class="bg-video__content" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg" alt="beach-image"/> -->
-      <img id ="beach-img" class="bg-video__content" src="https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=760&q=80" alt="beach-image"/>
-      
-      <!-- </video> -->
-    </div>
-    
-    <form class="input-section" autocomplete="off">
+        <!-- <img id ="beach-img" class="bg-video__content" src="https://cdn.pixabay.com/photo/2017/10/10/07/48/beach-2836300_960_720.jpg" alt="beach-image"/> -->
+        <img
+          id="beach-img"
+          class="bg-video__content"
+          src="https://images.unsplash.com/photo-1498464619740-386503e7e7f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=760&q=80"
+          alt="beach-image"
+        />
+
+        <!-- </video> -->
+      </div>
+
+      <form class="input-section" autocomplete="off">
         <!-- data input -->
-      <div class ="input input--1 city">
-        <label for="city-input" class="input-title city-here">City name</label>
-        <input type="text" class="input-city" id="city-input" placeholder="Where are you going?" name="city"  required/>
-      </div>
-      <div class ="input input--2 date">
-        <label for="start-date" class="input-title date-here">Departure date</label>
-        <input type="date" class="input-city" id="start-date" placeholder="MM/DD/YYYY" name="date" required/>
-      </div>
-      <div class ="input input--3 date">
-        <label for="end-date" class="input-title date-here">End date</label>
-        <input type="date" class="input-city" id="end-date" placeholder="MM/DD/YYYY" name="date"  required/>
-      </div>
-      <button id="generate" type = "submit" class="btn"><i class="fas fa-search"></i></button>
-    </form> 
-    <!-- UI update -->
-    <div class="result-section result">   
-      <div id = "entry-holder" class="result--container">
-        <!-- <div id="city-image" class="result-img"></div>
+        <div class="input input--1 city">
+          <label for="city-input" class="input-title city-here"
+            >City name</label
+          >
+          <input
+            type="text"
+            class="input-city"
+            id="city-input"
+            placeholder="Where are you going?"
+            name="city"
+            required
+          />
+        </div>
+        <div class="input input--2 date">
+          <label for="start-date" class="input-title date-here"
+            >Departure date</label
+          >
+          <input
+            type="date"
+            class="input-city"
+            id="start-date"
+            placeholder="MM/DD/YYYY"
+            name="date"
+            required
+          />
+        </div>
+        <div class="input input--3 date">
+          <label for="end-date" class="input-title date-here">End date</label>
+          <input
+            type="date"
+            class="input-city"
+            id="end-date"
+            placeholder="MM/DD/YYYY"
+            name="date"
+            required
+          />
+        </div>
+        <button id="generate" type="submit" class="btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <!-- UI update -->
+      <div class="result-section result">
+        <div id="entry-holder" class="result--container">
+          <!-- <div id="city-image" class="result-img"></div>
         <div class="result-text-container">
           <div class="result-text" id ="period"></div>
           <div class="result-text" id ="count-down"></div>
@@ -57,34 +95,51 @@
             <li class="result-text city-info-list-2" id ="lat-lon"></li>
           </ul>  
         </div> -->
-        <!--                                                                        -->
-        <div id="city-image" class="result-img"><img src="https://pixabay.com/get/g3dd9571ee14492d80411f0c269a40283f3911486e588ef0e5bb34305d9fef53545b212f89aa581dbeeb672746fe88df426991d4fa7307fc6feaab9a5d3754aa5_640.jpg" id="cityphoto" style="max-width: 100%; max-height: 100%; min-width: 100%; min-height: 100%; display: block;">
+          <!--                                                                        -->
+          <div id="city-image" class="result-img">
+            <img
+              src="https://cdn.pixabay.com/photo/2016/01/29/16/57/prague-1168302_960_720.jpg"
+              id="cityphoto"
+              style="
+                max-width: 100%;
+                max-height: 100%;
+                min-width: 100%;
+                min-height: 100%;
+                display: block;
+              "
+            />
+          </div>
+          <div class="result-text-container">
+            <div class="result-text" id="period">
+              05/24/2021 - 05/27/2021(For 3 days)
+            </div>
+            <div class="result-text" id="count-down">7 days away to</div>
+            <div class="result-text" id="location">Praha, Czechia</div>
+            <ul class="result-text city-info" id="city-info">
+              City Information
+              <li class="result-text city-info-list-1" id="weather">
+                Current Temp.: 50.1F
+                <img
+                  src="https://weatherbit.io/static/img/icons/c04n.png"
+                  class="city-info-list-1-icon"
+                />
+              </li>
+              <li class="result-text city-info-list-2" id="lat-lon">
+                lat: 50.08804 &amp; lon: 14.42076
+              </li>
+            </ul>
+          </div>
+          <!--                                                                  -->
         </div>
-        <div class="result-text-container">
-          <div class="result-text" id="period">05/24/2021 - 05/27/2021(For 3 days)</div>
-          <div class="result-text" id="count-down">7 days away to</div>
-          <div class="result-text" id="location">Praha, Czechia</div>  
-          <ul class="result-text city-info" id="city-info">City Information
-            <li class="result-text city-info-list-1" id="weather">Current Temp.: 50.1F     
-              <img src="https://weatherbit.io/static/img/icons/c04n.png" class="city-info-list-1-icon">
-            </li>
-            <li class="result-text city-info-list-2" id="lat-lon">lat: 50.08804 &amp; lon: 14.42076</li>
-          </ul>   
-        </div>
-        <!--                                                                  -->
-        
       </div>
     </div>
-  </div>
-  <footer class="footer">
-    Emily K.
-  </footer>
-  <!-- <script>
+    <footer class="footer">Emily K.</footer>
+    <!-- <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js');
         });
     }
   </script> -->
-</body>
+  </body>
 </html>

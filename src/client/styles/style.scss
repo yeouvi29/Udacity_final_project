@@ -14,91 +14,118 @@
 @import "layout/header";
 @import "layout/main";
 
-@media(max-width: 1090px) {
-    body {
+@media (max-width: 1090px) {
+  body {
+    width: 100vw;
+    height: auto;
+    // display: grid;
+    // grid-template-rows: 8rem min-height 10rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    margin: 0;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    font-size: 3rem;
+  }
+
+  .holder {
+    margin-left: 1.5rem;
+  }
+  .main-content {
+    display: block;
+    height: auto;
+    .input-section {
+      height: auto;
+      border-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+
+      button {
+        margin: auto;
+      }
+    }
+    .result--container {
+      display: block;
+    }
+
+    .result-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+
+      .result-text-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: darkseagreen;
+        color: #000;
+        font-size: 0.8em;
+        bottom: 300px;
         display: grid;
-        grid-template-rows: 10rem 1fr 10rem;
-        min-width: 100%;
-        margin: 0 auto;
-        align-items: center;
-        justify-content: space-evenly;
-    }
+        top: 0;
+        margin: 0;
+        margin-top: 10px;
+        opacity: 1;
+        padding-left: 30px;
 
-    header {
-        text-align: center;
-        font-size: 2rem;
-    }
-
-    .main-content {
-        display: block;
-        min-height: 50rem;
-        .input-section {
-            display: flex;
-            flex-direction: column;
-
-            button {
-                margin: auto;
-            }
+        #city-image {
+          max-height: 100%;
         }
 
-        .result-section {
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-
-            .result-container {
-                display: grid;
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-                grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
-                font-size: 0.8em;
-                bottom: 300px;
-                display: grid;
-                top: 0;
-                margin: 0;
-                margin-top: 10px;
-                opacity: 1;
-                padding-left: 30px;
-
-                #city-image {
-                    grid-column: span 1;
-                    grid-row: 1fr;
-                    max-width: 100%;
-                    max-height: 100%;
-                    margin: auto;
-                }
-
-                #period {
-                    font-size: 1.5rem;
-
-                }
-
-                #count-down {
-                    font-size: 1.3rem;
-                }
-
-                #location {
-                    font-size: 2rem;
-                }
-
-                #city-info {
-                    padding-left: 0;
-                }
-
-                #lat-lon {
-                    padding-left: 0;
-                    font-size: 1.3em;
-                }
-
-                #weather {
-                    padding-left: 0;
-                    font-size: 1.3em;
-                }
-            }
+        #period {
+          font-size: 1.5rem;
         }
-    }
 
-    footer {
-        margin-bottom: 30px;
+        #count-down {
+          font-size: 1.5rem;
+        }
+
+        #location {
+          font-size: 3rem;
+        }
+
+        #city-info {
+          height: auto;
+          padding-left: 0;
+          border: none;
+          margin: 0;
+        }
+
+        #lat-lon {
+          padding-left: 0;
+          font-size: 1.3em;
+          text-align: left;
+          margin-bottom: 0.2rem;
+        }
+
+        #weather {
+          padding-left: 0;
+          font-size: 1.3em;
+          margin-top: 0;
+        }
+      }
+      .result-img {
+        width: 100%;
+      }
+      .result-text {
+        color: #000;
+      }
     }
+  }
+
+  footer {
+    display: block;
+    margin-bottom: 30px;
+  }
 }
-
